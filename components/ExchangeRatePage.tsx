@@ -15,7 +15,7 @@ export default function ExchangeRatePage() {
           ) : (
             <Text>No exchange rates data available</Text>
           )}
-        </View>r
+        </View>
       <StatusBar style="auto" />
     </View>
     </ScrollView>
