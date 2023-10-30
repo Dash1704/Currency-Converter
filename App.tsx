@@ -1,45 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Config from 'react-native-config';
-import { useLatestExchange } from './hooks/useLatestExchange';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomePage from './components/HomePage';
+import ExchangeRatePage from './components/ExchangeRatePage';
+import ConversionPage from './components/ConversionPage';
+
+const Stack = createNativeStackNavigator<StackList>();
+
+type StackList = {
+  Home: undefined;
+  Exchange: undefined;
+  Conversion: undefined;
+}
 
 export default function App() {
-  const { exchangeRates } = useLatestExchange();
-
   return (
-    <ScrollView>
-    <View style={styles.container}>
-      <Text>CURRENCY CONVERTER</Text>
-        <View>
-          {exchangeRates ? (
-            <ExchangeRateList exchangeRates={exchangeRates} />
-          ) : (
-            <Text>No exchange rates data available</Text>
-          )}
-        </View>
-      <StatusBar style="auto" />
-    </View>
-    </ScrollView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home"
+          component={HomePage}
+        />
+        <Stack.Screen
+          name="Exchange"
+          component={ExchangeRatePage}
+        />
+        <Stack.Screen 
+          name="Conversion"
+          component={ConversionPage}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-function ExchangeRateList({ exchangeRates }: any) {
-  return (
-    <View>
-      {Object.keys(exchangeRates.rates).map((currency) => (
-        <Text key={currency}>
-          {currency}: {exchangeRates.rates[currency]}
-        </Text>
-      ))}
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
