@@ -1,11 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import Config from 'react-native-config';
+import { useLatestExchange } from './hooks/useLatestExchange';
 
 export default function App() {
+  const { exchangeRates } = useLatestExchange();
+
   return (
+    <ScrollView>
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>CURRENCY CONVERTER</Text>
+        <View>
+          {exchangeRates ? (
+            <ExchangeRateList exchangeRates={exchangeRates} />
+          ) : (
+            <Text>No exchange rates data available</Text>
+          )}
+        </View>
       <StatusBar style="auto" />
+    </View>
+    </ScrollView>
+  );
+}
+
+function ExchangeRateList({ exchangeRates }: any) {
+  return (
+    <View>
+      {Object.keys(exchangeRates.rates).map((currency) => (
+        <Text key={currency}>
+          {currency}: {exchangeRates.rates[currency]}
+        </Text>
+      ))}
     </View>
   );
 }
