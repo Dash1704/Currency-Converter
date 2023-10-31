@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-const API_KEY = "43062c534d6e4b519631c55caf12a97e";
+const API_URL = `https://api.tfl.gov.uk/Line/Mode/tube/Status`
 
-export function useConversion(value: string, from: string, to: string): {
-  conversions: any;
+export function useLineStatus(): {
+  lineStatuses: any | null;
 } {
-  const [conversions, setConversions] = useState<any>(null);
+  const [lineStatuses, setLineStatuses] = useState<any | null>(null);
 
   useEffect(() => {
-    fetch(`https://openexchangerates.org/api/convert/${value}/${from}/${to}?${API_KEY}`)
+    fetch(API_URL)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -16,13 +16,12 @@ export function useConversion(value: string, from: string, to: string): {
         return response.json() as Promise<any>;
       })
       .then((data) => {
-        setConversions(data);
+        setLineStatuses(data);
       })
       .catch((err) => {
         console.log(err)
       });
   }, []);
 
-  return { conversions };
+  return { lineStatuses };
 }
-

@@ -5,24 +5,17 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 type StackList = {
   Home: undefined;
-  Exchange: undefined;
-  Conversion: undefined;
+  LineStatus: undefined;
 }
 
 export default function HomePage({ navigation }: StackScreenProps<StackList, 'Home'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Currency Converter</Text>  
+      <Text style={styles.headerText}>TFL APP</Text>  
         <PageButton 
-          title="Latest Exchange Rates"
+          title="Line Statuses"
           onPress={() => {
-            navigation.navigate('Exchange')
-          }}
-        />
-        <PageButton 
-          title="Convert Currencies"
-          onPress={() => {
-            navigation.navigate('Conversion')
+            navigation.navigate('LineStatus')
           }}
         />
       <StatusBar style="auto" />

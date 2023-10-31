@@ -1,15 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from './components/HomePage';
-import ExchangeRatePage from './components/ExchangeRatePage';
-import ConversionPage from './components/ConversionPage';
+import LineStatusPage from './components/LineStatusPage';
 
 const Stack = createNativeStackNavigator<StackList>();
 
 type StackList = {
   Home: undefined;
-  Exchange: undefined;
-  Conversion: undefined;
+  LineStatus: undefined;
 }
 
 export default function App() {
@@ -21,13 +19,10 @@ export default function App() {
           component={HomePage}
         />
         <Stack.Screen
-          name="Exchange"
-          component={ExchangeRatePage}
+          name="LineStatus"
+          component={LineStatusPage}
         />
-        <Stack.Screen 
-          name="Conversion"
-          component={ConversionPage}
-        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
