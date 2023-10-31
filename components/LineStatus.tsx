@@ -5,7 +5,7 @@ export default function LineStatus({ line }: any) {
   const getBorderColor = () => {
     switch (line.name) {
       case 'Bakerloo':
-        return 'darkbrown';
+        return 'brown';
       case 'Central':
         return 'red';
       case 'Circle':
@@ -35,12 +35,11 @@ export default function LineStatus({ line }: any) {
 
   const styles = StyleSheet.create({
     lineContainer: {
-      flex: 1,
       borderColor: lineBorderColor,
-      padding: 10,
-      marginBottom: 10,
+      padding: 15,
       borderWidth: 5,
-      borderRadius: 20
+      borderRadius: 20,
+      marginTop: 10,
     }
   })
 

@@ -9,8 +9,7 @@ export default function LineStatusResultsPage() {
   return(
     <ScrollView>
     <View style={styles.container}>
-      <Text>LINE STATUSES</Text>
-      <View>
+      <View style={styles.lineBoxes}>
           {lineStatuses ? (
             lineStatuses.map((line: any) => (
               <LineStatus key={line.id} line={line} /> 
@@ -32,4 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  lineBoxes: {
+    width: '90%'
+  }
 });
