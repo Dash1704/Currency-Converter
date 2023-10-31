@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from './components/HomePage';
-import LineStatusPage from './components/LineStatusPage';
+import LineStatusResultsPage from './components/LineStatusResultsPage';
 
 const Stack = createNativeStackNavigator<StackList>();
 
@@ -20,7 +20,7 @@ export default function App() {
         />
         <Stack.Screen
           name="LineStatus"
-          component={LineStatusPage}
+          component={LineStatusResultsPage}
         />
 
       </Stack.Navigator>

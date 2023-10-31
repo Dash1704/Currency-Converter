@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { useLineStatus } from '../hooks/useLineStatus';
+import LineStatus from './LineStatus'
 
-export default function LineStatusPage() {
+export default function LineStatusResultsPage() {
   const { lineStatuses } = useLineStatus();
   
   return(
@@ -12,18 +13,7 @@ export default function LineStatusPage() {
       <View>
           {lineStatuses ? (
             lineStatuses.map((line: any) => (
-              <View key={line.id}>
-                <Text>{line.name}</Text>
-                {line.disruptions.length > 0 ? (
-                line.disruptions.map((disruption: any) => (
-                  <Text key={disruption.category}>
-                    {disruption.description}
-                  </Text>
-                ))
-              ) : (
-                <Text>Status OK</Text>
-              )}
-              </View>
+              <LineStatus key={line.id} line={line} /> 
             ))
           ) : (
             <Text>Loading line statuses...</Text>
