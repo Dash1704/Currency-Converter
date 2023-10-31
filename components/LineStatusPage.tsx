@@ -11,8 +11,19 @@ export default function LineStatusPage() {
       <Text>LINE STATUSES</Text>
       <View>
           {lineStatuses ? (
-            lineStatuses.map((lines: any) => (
-              <Text key={lines.id}>{lines.name}</Text>
+            lineStatuses.map((line: any) => (
+              <View key={line.id}>
+                <Text>{line.name}</Text>
+                {line.disruptions.length > 0 ? (
+                line.disruptions.map((disruption: any) => (
+                  <Text key={disruption.category}>
+                    {disruption.description}
+                  </Text>
+                ))
+              ) : (
+                <Text>Status OK</Text>
+              )}
+              </View>
             ))
           ) : (
             <Text>Loading line statuses...</Text>

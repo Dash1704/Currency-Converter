@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const API_URL = `https://api.tfl.gov.uk/Line/Mode/tube/Status`
+const modes = 'tube,dlr'
+const API_URL = `https://api.tfl.gov.uk/Line/Mode/${modes}`
 
 export function useLineStatus(): {
   lineStatuses: any | null;
